@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn;
     private TextView textView;
     private int result;
-    final String RESULT_KEY = "result";
+    final static String RESULT_KEY = "result";
 
 
     @Override
@@ -37,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(savedInstanceState != null){
-            result = savedInstanceState.getInt(RESULT_KEY);
-            textView.setText(String.valueOf(result));
-        }
+//        if(savedInstanceState != null){
+//            result = savedInstanceState.getInt(RESULT_KEY);
+//            textView.setText(String.valueOf(result));
+//        }
+
     }
 
     public void calculate(){
@@ -57,5 +58,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(RESULT_KEY, result);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        result = savedInstanceState.getInt(RESULT_KEY);
+        textView.setText(String.valueOf(result));
     }
 }
